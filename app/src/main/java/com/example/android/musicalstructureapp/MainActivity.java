@@ -87,13 +87,8 @@ public class MainActivity extends AppCompatActivity {
         tracksListTextView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
-
-
                 Intent intent = new Intent(MainActivity.this, TracksActivity.class);
-                intent.putExtra("LIST", tracks);
+                intent.putExtra("TRACKS",tracks);
                 startActivity(intent);
 
             }

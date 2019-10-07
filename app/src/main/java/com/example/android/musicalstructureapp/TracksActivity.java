@@ -1,8 +1,17 @@
 package com.example.android.musicalstructureapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
 
 
 public class TracksActivity extends AppCompatActivity {
@@ -12,17 +21,9 @@ public class TracksActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.track_list);
 
-
-
-        //TrackAdapter adapter = new TrackAdapter(this, tracks);
-
-
-
-
-        /*
-
-
-
+        Intent i = getIntent();
+        final ArrayList<Track> tracks = (ArrayList<Track>) i.getSerializableExtra("TRACKS");
+        TrackAdapter adapter = new TrackAdapter(this, tracks);
         final ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapter);
 
@@ -52,7 +53,7 @@ public class TracksActivity extends AppCompatActivity {
 
 
             }
-        });*/
+        });
 
     }
 }
