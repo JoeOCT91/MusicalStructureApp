@@ -2,10 +2,10 @@ package com.example.android.musicalstructureapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,15 +27,35 @@ public class MainActivity extends AppCompatActivity {
         final TrackData data = new TrackData();
         final ArrayList<Track> tracks = data.getTracks();
 
-
         final ImageView albumArtImageView = findViewById(R.id.album_art);
         final TextView trackNameTextView = findViewById(R.id.track_name);
         final TextView albumNameTextView = findViewById(R.id.album_name);
         final TextView artistNameTextView = findViewById(R.id.artist_name);
-        albumArtImageView.setImageResource(tracks.get(position).getArtImageId());
-        trackNameTextView.setText(tracks.get(position).getAlbumName());
-        albumNameTextView.setText(tracks.get(position).getTrackName());
-        artistNameTextView.setText(tracks.get(position).getArtistName());
+
+        Intent i = getIntent();
+
+
+        if (i == null) {
+
+            albumArtImageView.setImageResource(tracks.get(position).getArtImageId());
+            trackNameTextView.setText(tracks.get(position).getAlbumName());
+            albumNameTextView.setText(tracks.get(position).getTrackName());
+            artistNameTextView.setText(tracks.get(position).getArtistName());
+
+        } else {
+
+            String Ahmed = i.getStringExtra("ALBUM");
+            int Ahmed = i.getIntExtra("ART-IMG");
+
+            albumArtImageView.setImageResource();
+            trackNameTextView.setText(tracks.get(position).getAlbumName());
+            albumNameTextView.setText(tracks.get(position).getTrackName());
+            artistNameTextView.setText(tracks.get(position).getArtistName());
+
+        }
+
+
+
 
 
         TextView next = findViewById(R.id.next_track);
@@ -43,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
         TextView previousTrack = findViewById(R.id.previous_track);
         previousTrack.setText("Previous");
 
-        Log.v("tracklistsize", " " + tracks.size());
 
 
         next.setOnClickListener(new OnClickListener() {
@@ -52,28 +71,42 @@ public class MainActivity extends AppCompatActivity {
 
                 if (position == 0) {
                     position++;
-                    Log.v("Position", "is" + position);
                     trackNameTextView.setText(tracks.get(position).getAlbumName());
                     albumNameTextView.setText(tracks.get(position).getTrackName());
                     artistNameTextView.setText(tracks.get(position).getArtistName());
+                    albumArtImageView.setImageResource(tracks.get(position).getArtImageId());
 
 
                 } else if (!(position == tracks.size() - 1)) {
                     position++;
-                    Log.v("Position", "is" + position);
                     trackNameTextView.setText(tracks.get(position).getAlbumName());
                     albumNameTextView.setText(tracks.get(position).getTrackName());
                     artistNameTextView.setText(tracks.get(position).getArtistName());
+                    albumArtImageView.setImageResource(tracks.get(position).getArtImageId());
 
 
                 } else {
 
                     position = 0;
-                    Log.v("Position", "is" + position);
                     trackNameTextView.setText(tracks.get(position).getAlbumName());
                     albumNameTextView.setText(tracks.get(position).getTrackName());
                     artistNameTextView.setText(tracks.get(position).getArtistName());
+                    albumArtImageView.setImageResource(tracks.get(position).getArtImageId());
                 }
+
+            }
+        });
+
+
+        LinearLayout songsLinearLayout = findViewById(R.id.songs);
+        songsLinearLayout.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(MainActivity.this, TracksActivity.class);
+                intent.putExtra("LIST", tracks);
+                startActivity(intent);
 
             }
         });
@@ -87,9 +120,6 @@ public class MainActivity extends AppCompatActivity {
         tracksListTextView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
 
 
                 Intent intent = new Intent(MainActivity.this, TracksActivity.class);
@@ -106,18 +136,18 @@ public class MainActivity extends AppCompatActivity {
 
                 if (position == 0) {
                     position = tracks.size() - 1;
-                    Log.v("Position", "is" + position);
                     trackNameTextView.setText(tracks.get(position).getAlbumName());
                     albumNameTextView.setText(tracks.get(position).getTrackName());
                     artistNameTextView.setText(tracks.get(position).getArtistName());
+                    albumArtImageView.setImageResource(tracks.get(position).getArtImageId());
 
                 } else if (position < tracks.size()) {
 
                     position--;
-                    Log.v("Position", "is" + position);
                     trackNameTextView.setText(tracks.get(position).getAlbumName());
                     albumNameTextView.setText(tracks.get(position).getTrackName());
                     artistNameTextView.setText(tracks.get(position).getArtistName());
+                    albumArtImageView.setImageResource(tracks.get(position).getArtImageId());
 
                 }
             }
