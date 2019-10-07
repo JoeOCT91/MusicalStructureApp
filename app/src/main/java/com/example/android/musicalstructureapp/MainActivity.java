@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         TextView next = findViewById(R.id.next_track);
-        next.setText("Next");
+        next.setText(R.string.Next);
         TextView previousTrack = findViewById(R.id.previous_track);
         previousTrack.setText("Previous");
 
@@ -88,7 +88,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
+
+
+
                 Intent intent = new Intent(MainActivity.this, TracksActivity.class);
+                intent.putExtra("LIST", tracks);
                 startActivity(intent);
 
             }
