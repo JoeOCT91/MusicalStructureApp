@@ -35,22 +35,29 @@ public class MainActivity extends AppCompatActivity {
         Intent i = getIntent();
 
 
-        if (i == null) {
+        if (i.getStringExtra("") == null) {
+
+            String albumName = i.getStringExtra("ALBUM");
+            String artistName = i.getStringExtra("ARTIST");
+            String trackName = i.getStringExtra("TRACK");
+            int albumArtId = i.getIntExtra("ART-IMG", 0);
+
+
+            albumArtImageView.setImageResource(albumArtId);
+            trackNameTextView.setText(albumName);
+            albumNameTextView.setText(artistName);
+            artistNameTextView.setText(trackName);
+
+
+
+        } else {
 
             albumArtImageView.setImageResource(tracks.get(position).getArtImageId());
             trackNameTextView.setText(tracks.get(position).getAlbumName());
             albumNameTextView.setText(tracks.get(position).getTrackName());
             artistNameTextView.setText(tracks.get(position).getArtistName());
 
-        } else {
 
-            String Ahmed = i.getStringExtra("ALBUM");
-            int Ahmed = i.getIntExtra("ART-IMG");
-
-            albumArtImageView.setImageResource();
-            trackNameTextView.setText(tracks.get(position).getAlbumName());
-            albumNameTextView.setText(tracks.get(position).getTrackName());
-            artistNameTextView.setText(tracks.get(position).getArtistName());
 
         }
 
