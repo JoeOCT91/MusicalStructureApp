@@ -44,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
 
 
             albumArtImageView.setImageResource(albumArtId);
-            trackNameTextView.setText(albumName);
-            albumNameTextView.setText(artistName);
-            artistNameTextView.setText(trackName);
+            trackNameTextView.setText(trackName);
+            albumNameTextView.setText(albumName);
+            artistNameTextView.setText(artistName);
 
 
 
@@ -65,44 +65,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        TextView next = findViewById(R.id.next_track);
-        next.setText(R.string.Next);
-        TextView previousTrack = findViewById(R.id.previous_track);
-        previousTrack.setText("Previous");
-
-
-
-        next.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (position == 0) {
-                    position++;
-                    trackNameTextView.setText(tracks.get(position).getAlbumName());
-                    albumNameTextView.setText(tracks.get(position).getTrackName());
-                    artistNameTextView.setText(tracks.get(position).getArtistName());
-                    albumArtImageView.setImageResource(tracks.get(position).getArtImageId());
-
-
-                } else if (!(position == tracks.size() - 1)) {
-                    position++;
-                    trackNameTextView.setText(tracks.get(position).getAlbumName());
-                    albumNameTextView.setText(tracks.get(position).getTrackName());
-                    artistNameTextView.setText(tracks.get(position).getArtistName());
-                    albumArtImageView.setImageResource(tracks.get(position).getArtImageId());
-
-
-                } else {
-
-                    position = 0;
-                    trackNameTextView.setText(tracks.get(position).getAlbumName());
-                    albumNameTextView.setText(tracks.get(position).getTrackName());
-                    artistNameTextView.setText(tracks.get(position).getArtistName());
-                    albumArtImageView.setImageResource(tracks.get(position).getArtImageId());
-                }
-
-            }
-        });
 
 
         LinearLayout songsLinearLayout = findViewById(R.id.songs);
@@ -136,7 +98,43 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Still Not usable code
+
+        // Control ImageView to get Next item on the array list
+        ImageView next = findViewById(R.id.next_track);
+        next.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (position == 0) {
+                    position++;
+                    trackNameTextView.setText(tracks.get(position).getAlbumName());
+                    albumNameTextView.setText(tracks.get(position).getTrackName());
+                    artistNameTextView.setText(tracks.get(position).getArtistName());
+                    albumArtImageView.setImageResource(tracks.get(position).getArtImageId());
+
+
+                } else if (!(position == tracks.size() - 1)) {
+                    position++;
+                    trackNameTextView.setText(tracks.get(position).getAlbumName());
+                    albumNameTextView.setText(tracks.get(position).getTrackName());
+                    artistNameTextView.setText(tracks.get(position).getArtistName());
+                    albumArtImageView.setImageResource(tracks.get(position).getArtImageId());
+
+
+                } else {
+
+                    position = 0;
+                    trackNameTextView.setText(tracks.get(position).getAlbumName());
+                    albumNameTextView.setText(tracks.get(position).getTrackName());
+                    artistNameTextView.setText(tracks.get(position).getArtistName());
+                    albumArtImageView.setImageResource(tracks.get(position).getArtImageId());
+                }
+
+            }
+        });
+
+        // Control ImageView to get Next item on the array list
+        ImageView previousTrack = findViewById(R.id.previous_track);
         previousTrack.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
