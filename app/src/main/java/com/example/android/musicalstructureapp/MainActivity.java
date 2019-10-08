@@ -2,6 +2,7 @@ package com.example.android.musicalstructureapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -35,7 +36,23 @@ public class MainActivity extends AppCompatActivity {
         Intent i = getIntent();
 
 
-        if (i.getStringExtra("") != null) {
+        if (getIntent().getExtras() == null) {
+
+            Log.v("Message1", "null");
+
+
+            albumArtImageView.setImageResource(tracks.get(position).getArtImageId());
+            trackNameTextView.setText(tracks.get(position).getAlbumName());
+            albumNameTextView.setText(tracks.get(position).getTrackName());
+            artistNameTextView.setText(tracks.get(position).getArtistName());
+
+
+
+
+        } else {
+
+            Log.v("Message2", "Else");
+
 
             String albumName = i.getStringExtra("ALBUM");
             String artistName = i.getStringExtra("ARTIST");
@@ -47,17 +64,6 @@ public class MainActivity extends AppCompatActivity {
             trackNameTextView.setText(trackName);
             albumNameTextView.setText(albumName);
             artistNameTextView.setText(artistName);
-
-
-
-        } else {
-
-            albumArtImageView.setImageResource(tracks.get(position).getArtImageId());
-            trackNameTextView.setText(tracks.get(position).getAlbumName());
-            albumNameTextView.setText(tracks.get(position).getTrackName());
-            artistNameTextView.setText(tracks.get(position).getArtistName());
-
-
 
         }
 
