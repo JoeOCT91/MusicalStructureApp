@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         Intent i = getIntent();
 
 
-        if (i.getStringExtra("") == null) {
+        if (i.getStringExtra("") != null) {
 
             String albumName = i.getStringExtra("ALBUM");
             String artistName = i.getStringExtra("ARTIST");
